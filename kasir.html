@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kasir - ObatGAGAL</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+ <!-- bagian navbar -->
+ <header class="nav-wrap">
+    <!-- bungkus bagian atas (nav) -->
+  
+      <div class="container">
+      <!-- cuma buat ngasih jarak kiri kanan biar rapi -->
+  
+        <a class="brand" href="index.html">
+        <!-- tombol logo yang kalau di klik balik ke home -->
+  
+          <img src="https://i.ibb.co.com/nNmb4sht/Untitled1456-20251123132332.png" alt="logo" class="logo">
+          <!-- gambar logo -->
+  
+          <h4 id="judulatas">ObatGAGAL</h4>
+          <!-- tulisan nama toko -->
+        </a>
+  
+        <nav>
+        <!-- area menu navigasi -->
+  
+          <button class="nav-toggle" aria-label="buka menu">☰</button>
+          <!-- tombol menu buat hp -->
+  
+          <ul class="nav-list">
+          <!-- list menu -->
+  
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <!-- tombol ke section home -->
+  
+            <li><a href="index.html#products" class="nav-link">Produk</a></li>
+            <!-- tombol ke section produk -->
+  
+            <li><a href="index.html#about" class="nav-link">Tentang</a></li>
+            <!-- tombol ke section about -->
+  
+            <li><a href="index.html#contact" class="nav-link">Kontak</a></li>
+            <!-- tombol ke section kontak -->
+          </ul>
+        </nav>
+      </div>
+    </header>
+<body>
+
+  <section class="kasir-wrap">
+    <div class="kasir-box">
+
+      <h2>halaman kasir</h2>
+
+      <label>nama barang</label>
+      <input type="text" id="barang">
+
+      <label>harga</label>
+      <input type="number" id="harga">
+
+      <label>qty</label>
+      <input type="number" id="qty">
+
+      <p class="total-box">total : <span id="total">0</span></p>
+
+      <button id="hitung">hitung</button>
+      <button id="checkout">checkout</button>
+
+    </div>
+  </section>
+  <footer>
+    <div class="container footer-inner">
+
+      <div class="social">
+        <!-- link sosial media -->
+
+        <a href="#"><img src="https://www.freepnglogos.com/uploads/instagram-logos-png-images-free-download-2.png" width="30px" height="30px"></a>
+        <a href="#"><img src="https://static.vecteezy.com/system/resources/previews/016/716/481/non_2x/facebook-icon-free-png.png" width="30px" height="30px"></a>
+        <a href="#"><img src="https://logospng.org/download/tiktok/logo-tiktok-icone-1536.png" width="30px" height="30px"></a>
+      </div>
+
+      <div class="copyright">
+        <!-- credit kelompok -->
+
+        © 2025 Abel/05 Joelle/17 Keisa/21 | Kelas XI.4
+      </div>
+    </div>
+  </footer>
+  <script>
+    // ambil id dari url
+    function getID(){
+      let url = new URL(window.location.href)
+      return url.searchParams.get("id")
+    }
+
+    // data produk sama kayak yg di script utama
+const produk = {
+    p1: {
+        nama: "OBH Combi Plus Batuk Flu Menthol",
+        harga: 24500,
+        shopee: "https://id.shp.ee/23gDC3Z"
+    },
+    p2: {
+        nama: "Promag Obat Maag & Asam Lambung",
+        harga: 11400,
+        shopee: "https://id.shp.ee/4EDjCwy"
+    },
+    p3: {
+        nama: "Diapet Obat Meredakan Diare",
+        harga: 8600,
+        shopee: "https://id.shp.ee/8A68abM"
+    },
+    p4: {
+        nama: "Counterpain Krim Pereda Nyeri",
+        harga: 52500,
+        shopee: "https://id.shp.ee/dyYXCcn"
+    },
+    p5: {
+        nama: "Tolak Angin Cair",
+        harga: 25500,
+        shopee: "https://id.shp.ee/LEZQhRH"
+    }
+};
+
+    // siapin input
+    const barang = document.getElementById("barang")
+    const harga = document.getElementById("harga")
+    const qty = document.getElementById("qty")
+    const total = document.getElementById("total")
+    const hitung = document.getElementById("hitung")
+    const checkout = document.getElementById("checkout")
+
+    // isi otomatis berdasarkan id
+    const id = getID()
+    if(produk[id]){
+      barang.value = produk[id].nama
+      harga.value = produk[id].harga
+    }
+
+    // tombol hitung
+    hitung.addEventListener("click", ()=>{
+      let q = parseFloat(qty.value)||0
+      let h = parseFloat(harga.value)||0
+      total.innerText = q*h
+    })
+
+    // tombol checkout ke shopee
+    checkout.addEventListener("click", ()=>{
+      if(produk[id]){
+        window.open(produk[id].shopee, "_blank")
+      }
+    })
+  </script>
+</body>
+</html>
